@@ -2,7 +2,7 @@ export const Rovers = {
   "curiosity": true,
   "opportunity": true,
   "spirit": true,
-  "perserverance": true,
+  "perseverance": true,
 }
 
 export type Rovers = keyof typeof Rovers;
@@ -10,8 +10,12 @@ export type Rovers = keyof typeof Rovers;
 export type AppContextState = {
     rovers?: RoverBaseApi[],
     selectedRover: Rovers, // todo: key by ID but this could impact typing of the bottom tab bar, which needs more work
-    roverViewConfig?: RoverViewConfig,
+    selectedRoverDetails?: RoverBaseApi;
+    roverViewConfig?: Partial<RoverViewConfig>,
+    images: Image[],
+    fetchImages: (rover: Rovers, params?: URLSearchParams) => void;
     changeRover: (name: Rovers) => void;
+    changeRoverViewConfig: (roverViewConfig: Partial<RoverViewConfig>) => void;
   };
 
 export interface RoverCamera {
@@ -36,5 +40,15 @@ export interface RoverBaseApi {
 export interface RoverViewConfig {
   camera: RoverCamera,
   dateType: "date" | "sol",
-  date: Date | number,
+  date: Date,
+  sol: number,
+}
+
+export interface Image {
+  camera: RoverCamera,
+  earth_date: Date,
+  id: number,
+  img_src: string,
+  rover: Partial<RoverBaseApi>
+  sol: number,
 }

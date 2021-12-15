@@ -1,4 +1,3 @@
-// import 'dotenv/config';
 import { Rovers } from '../providers/types';
 const MANIFEST = process.env;
 const API_KEY = MANIFEST.APP_MANIFEST.extra.apiKey;
@@ -11,12 +10,12 @@ function url(path?: string, params?: URLSearchParams) {
   return `${API_BASE}/${path}?api_key=${API_KEY}&${params}`
 }
 
-export async function start() {
+export async function baseApiRequest() {
   return await processFetch()
 }
 
-export async function photos(rover: Rovers, params?: URLSearchParams) {
-  return await processFetch(`/${rover}/photos`, params)
+export async function apiPhotosRequest(rover: Rovers, params?: URLSearchParams) {
+  return await processFetch(`${rover}/photos`, params)
 }
 
 async function processFetch(path?: string, params?: URLSearchParams): Promise<any> {

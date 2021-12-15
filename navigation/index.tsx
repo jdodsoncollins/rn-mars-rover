@@ -104,10 +104,10 @@ function BottomTabNavigator() {
         name="Tab4"
         component={TabScreen}
         listeners={{
-          tabPress: (e => {changeRover('perserverance')})
+          tabPress: (e => {changeRover('perseverance')})
         }}
         options={{
-          title: 'Perserverance',
+          title: 'Perseverance',
           tabBarIcon: ({ color }) => <TabBarIcon name="camera" color={color} />,
         }}
       />

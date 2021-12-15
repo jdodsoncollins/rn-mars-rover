@@ -2,11 +2,13 @@
 
 This project is a basic interface to browse the [NASA Mars Rover API](https://api.nasa.gov/) using [Expo](https://docs.expo.dev/workflow/expo-cli/), which enables a React Application to be bootstrapped with basic UI, designed for compilation and deployment to web, iOS, and Android.
 
-#### React Functionality Used
+#### Features Used
 - Navigation
 - Context 
 - Effects
 - TypeScript support
+- Fetch
+- [NativeBase](https://docs.nativebase.io/) components
 
 #### *Why do this in React Native, why not with [Create React App](https://reactjs.org/docs/create-a-new-react-app.html)?*
 
@@ -37,8 +39,9 @@ If you choose to target iOS or Android for building, respective development appl
 
 ### **Areas of improvement**
 This project was intentionally timeboxed. Given more time, I'd focus on the following for improvement
+- Useful unit tests!
 - Proper typings, particularly for the Mars rover tab elements.
 - Resiliency against API changes. For example, runtime type-checks. The four current rovers are currently hard-coded also for app boot. It would also be nice to query the API and *then* render tabs based on the Rovers returned, in case the rovers change.
 - Better abstraction, error-handling, and organization of API requests.
 - App state improvements. For example, the single app-level store could be split into a top-level store for rover selection, and then per-rover stores for rover settings.
-- Lots of UI refinement. This project was created with React Native stock UI elements.
+- Lots of UI refinement. I have a good working knowledge of CSS and UI best practices, and this project incorporates no custom styling of mine, beyond basic component placement.
