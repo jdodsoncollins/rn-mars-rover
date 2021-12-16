@@ -5,17 +5,24 @@ import RoverControls from '../components/roverControls';
 import RoverImages from '../components/RoverImages';
 
 import RoverInfo from '../components/RoverInfo';
-import { Text, View } from '../components/Themed';
+import { View } from '../components/Themed';
 import { AppContext } from '../providers';
 import { RootTabScreenProps } from '../types';
 
-export default function TabScreen({ navigation }: RootTabScreenProps<'Tab1'|'Tab2'|'Tab3'|'Tab4'>) { // todo: fix typings
+export default function TabScreen({
+  navigation,
+}: RootTabScreenProps<'Tab1' | 'Tab2' | 'Tab3' | 'Tab4'>) {
+  // todo: fix typings
   const { selectedRoverDetails } = useContext(AppContext);
 
   return (
     <View style={styles.container}>
       <View style={styles.body}>
-        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+        <View
+          style={styles.separator}
+          lightColor="#eee"
+          darkColor="rgba(255,255,255,0.1)"
+        />
         <RoverInfo />
       </View>
       <RoverImages />
