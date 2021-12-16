@@ -1,6 +1,5 @@
-import { Spinner } from 'native-base';
 import React, { useContext } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ActivityIndicator } from 'react-native';
 
 import { AppContext } from '../providers';
 import { Text, View } from './Themed';
@@ -11,7 +10,7 @@ export default function RoverInfo() {
 
   return (
     <View>
-      {!selectedRoverDetails && <Spinner accessibilityLabel="Loading posts" />}
+      {!selectedRoverDetails && <ActivityIndicator />}
       {selectedRoverDetails && <View style={styles.getStartedContainer}>
         <Text
           style={styles.roverInfo}

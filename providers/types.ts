@@ -42,6 +42,7 @@ export interface RoverViewConfig {
   dateType: "date" | "sol",
   date: Date,
   sol: number,
+  page: number,
 }
 
 export interface Image {

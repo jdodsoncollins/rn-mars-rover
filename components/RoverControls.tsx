@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { Dimensions, StyleSheet, Switch } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { AppContext } from '../providers';
 import { View, Text } from './Themed';
 import { DateTime } from 'luxon'
-import { Button } from 'native-base';
+import { Button, Icon, Switch } from 'react-native-elements';
 const { width, height } = Dimensions.get('window');
 console.log(width);
 
@@ -23,8 +23,20 @@ export default function RoverControls() {
         <Switch size="sm" onValueChange={() => changeRoverViewConfig({dateType: roverViewConfig?.dateType === 'sol' ? 'date' : 'sol'})} value={roverViewConfig?.dateType === 'sol'} />
       </View>
       <View style={{flexDirection: 'row'}}>
-        <Button style={styles.dateButton} onPress={() => roverViewConfig?.dateType === 'sol' ? prevSol() : prevDate()} isDisabled={roverViewConfig?.dateType === 'sol' && !!(roverViewConfig?.sol <= 0)}>{'Previous ' + roverViewConfig?.dateType}</Button>
-        <Button style={styles.dateButton} onPress={() => roverViewConfig?.dateType === 'sol' ? nextSol() : nextDate()} isDisabled={roverViewConfig?.dateType === 'date' && isFutureDate(roverViewConfig?.date)}>{'Next ' + roverViewConfig?.dateType}</Button>
+        <Button  type="outline" style={styles.dateButton} onPress={() => roverViewConfig?.dateType === 'sol' ? prevSol() : prevDate()} disabled={roverViewConfig?.dateType === 'sol' && !!(roverViewConfig?.sol <= 0)}  icon={
+    <Icon
+      name="arrow-left"
+      size={15}
+      color="white"
+    />
+  } title={'Previous ' + roverViewConfig?.dateType}></Button>
+        <Button  type="outline" style={styles.dateButton} onPress={() => roverViewConfig?.dateType === 'sol' ? nextSol() : nextDate()} disabled={roverViewConfig?.dateType === 'date' && isFutureDate(roverViewConfig?.date)}  icon={
+    <Icon
+      name="arrow-right"
+      size={15}
+      color="white"
+    />
+  } iconRight title={'Next ' + roverViewConfig?.dateType}></Button>
       </View>
     </View>
   );
@@ -36,7 +48,7 @@ const styles = StyleSheet.create({
         flexDirection: width > 500 ? 'row' : 'column',
         flexWrap: 'wrap',
         alignItems: 'center',
-        marginHorizontal: 50,
+        marginHorizontal: 10,
     },
     label: {
         paddingStart: 10,

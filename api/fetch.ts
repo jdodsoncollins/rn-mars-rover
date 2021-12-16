@@ -15,6 +15,7 @@ export async function baseApiRequest() {
 }
 
 export async function apiPhotosRequest(rover: Rovers, params?: URLSearchParams) {
+  if (!params?.get('page')) params?.set('page', String(1));
   return await processFetch(`${rover}/photos`, params)
 }
 

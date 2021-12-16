@@ -8,7 +8,7 @@ This project is a basic interface to browse the [NASA Mars Rover API](https://ap
 - Effects
 - TypeScript support
 - Fetch
-- [NativeBase](https://docs.nativebase.io/) components
+- [React Native Elements](https://reactnativeelements.com/) components
 
 #### *Why do this in React Native, why not with [Create React App](https://reactjs.org/docs/create-a-new-react-app.html)?*
 

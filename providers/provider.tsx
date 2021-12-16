@@ -10,6 +10,7 @@ const contextDefaultValues: AppContextState = {
     date: DateTime.now().startOf('day').toISO(),
     sol: 0,
     dateType: "date",
+    page: 1,
   },
   images: [],
   fetchImages: () => {},
@@ -35,7 +36,8 @@ const AppProvider: FC = ({ children }) => {
     setRoverViewConfig(mergedConfig);
   }
   const changeSelectedRoverDetails = (rover: Rovers) => rovers && setSelectedRoverDetails(rovers.find(r => r.name?.toLowerCase() === rover.toLowerCase())); // todo: write this data into state on app init, and merge selectedRover and selectedRoverDetails
-  const fetchImages = (rover: Rovers, params?: URLSearchParams) => apiPhotosRequest(rover, params).then((res: {photos: Image[]}) => setImages(res.photos));
+  let isApiSubscribed = false;
+  const fetchImages = (rover: Rovers, params?: URLSearchParams) => isApiSubscribed && apiPhotosRequest(rover, params).then((res: {photos: Image[]}) => setImages(res.photos));
 
   useEffect(() => {
     setSelectedRover("curiosity");
@@ -48,12 +50,18 @@ const AppProvider: FC = ({ children }) => {
     changeSelectedRoverDetails(selectedRover);
   }, [rovers, selectedRover])
 
-  useEffect(() =>{
+  useEffect(() => {
     const paramsObj = {rover: selectedRover};
+    isApiSubscribed = true;
     if (roverViewConfig?.dateType === 'date') paramsObj['earth_date'] = DateTime.fromISO(roverViewConfig?.date).toISODate();
     if (roverViewConfig?.dateType === 'sol') paramsObj['sol'] = roverViewConfig?.sol;
+    paramsObj['page'] = roverViewConfig?.page;
     const searchParams = new URLSearchParams(paramsObj);
     fetchImages(selectedRover, searchParams);
+    return () => {
+      // cancel the subscription
+      isApiSubscribed = false;
+  };
   }, [roverViewConfig, selectedRover])
 
   return (
