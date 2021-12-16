@@ -15,7 +15,6 @@ export default function TabScreen({ navigation }: RootTabScreenProps<'Tab1'|'Tab
   return (
     <View style={styles.container}>
       <View style={styles.body}>
-        <Text style={styles.title}>{selectedRoverDetails?.name}</Text>
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
         <RoverInfo />
       </View>

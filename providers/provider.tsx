@@ -54,7 +54,7 @@ const AppProvider: FC = ({ children }) => {
     if (roverViewConfig?.dateType === 'sol') paramsObj['sol'] = roverViewConfig?.sol;
     const searchParams = new URLSearchParams(paramsObj);
     fetchImages(selectedRover, searchParams);
-  }, [roverViewConfig])
+  }, [roverViewConfig, selectedRover])
 
   return (
     <AppContext.Provider

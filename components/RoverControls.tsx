@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
-import { StyleSheet, Switch } from 'react-native';
+import { Dimensions, StyleSheet, Switch } from 'react-native';
 import { AppContext } from '../providers';
 import { View, Text } from './Themed';
 import { DateTime } from 'luxon'
 import { Button } from 'native-base';
+const { width, height } = Dimensions.get('window');
+console.log(width);
 
 export default function RoverControls() {
   const { roverViewConfig, changeRoverViewConfig } = useContext(AppContext);
@@ -17,7 +19,8 @@ export default function RoverControls() {
     <View style={styles.controlsContainer}>
       <View style={{flexDirection: 'row'}}>
         <Text style={styles.label}>{roverViewConfig?.dateType === 'sol' ? 'Sol: ' + roverViewConfig?.sol : 'Date: ' + DateTime.fromISO(roverViewConfig?.date).toLocaleString({ month: 'long', day: 'numeric', year: 'numeric' })}</Text>
-        <Switch size="sm" onValueChange={() => changeRoverViewConfig({dateType: roverViewConfig?.dateType === 'sol' ? 'date' : 'sol'})} value={roverViewConfig?.dateType === 'sol'} /><Text style={styles.label}>Use Martian sol</Text>
+        <Text style={styles.label}>Use Martian sol</Text>
+        <Switch size="sm" onValueChange={() => changeRoverViewConfig({dateType: roverViewConfig?.dateType === 'sol' ? 'date' : 'sol'})} value={roverViewConfig?.dateType === 'sol'} />
       </View>
       <View style={{flexDirection: 'row'}}>
         <Button style={styles.dateButton} onPress={() => roverViewConfig?.dateType === 'sol' ? prevSol() : prevDate()} isDisabled={roverViewConfig?.dateType === 'sol' && !!(roverViewConfig?.sol <= 0)}>{'Previous ' + roverViewConfig?.dateType}</Button>
@@ -30,7 +33,7 @@ export default function RoverControls() {
 const styles = StyleSheet.create({
     controlsContainer: {
         padding: 20,
-        flexDirection: 'row',
+        flexDirection: width > 500 ? 'row' : 'column',
         flexWrap: 'wrap',
         alignItems: 'center',
         marginHorizontal: 50,
@@ -40,7 +43,6 @@ const styles = StyleSheet.create({
         paddingEnd: 10,
     },
     dateButton: {
-        marginStart: 10,
-        marginEnd: 10,
+        margin: 10,
     }
 });
