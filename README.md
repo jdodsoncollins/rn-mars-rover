@@ -12,13 +12,13 @@ This project is a basic interface to browse the [NASA Mars Rover API](https://ap
 
 #### *Why do this in React Native, why not with [Create React App](https://reactjs.org/docs/create-a-new-react-app.html)?*
 
-The scope of this project made this a good candidate for this tooling and I wanted an excuse to use it, since I haven't gotten to the "Native" part of React in my day-job yet.
+React Native can work on web too! [Twitter is a promenent example](https://giuseppegurgone.com/twitter-html/). 
 
-The React Native ecosystem has fantastic tooling for multi-platform development. Expo in particular has a great dev environment, with hot-reloading on web & mobile platforms in dev mode.
+The scope of this project made this a good candidate for this tooling and I wanted an excuse to use it, since I haven't gotten to use the "Native" part of React in my day-job as much as I'd like. Outside of the build & UI layer, all other typical React patterns are just as applicable here. Trying RN when already familiar with React is not a big leap and more like using an extremely opinionated UI library on top of React.
+
+The React Native ecosystem has fantastic tooling for multi-platform development, especially so in the past year. Expo in particular has a great dev environment, with hot-reloading on web & mobile platforms in dev mode.
 
 The use of web technology beyond browsers I feel really benefits developer experience, and users benefit extended choice in app selection. Targeting desktop platforms is possible too - see [React Native for Mac/Windows](https://microsoft.github.io/react-native-windows/).
-
-In this case here with Expo, the basic UI elements are already provided for rapid bootstrapping *and* it then compiles to near-native mobile apps (some dependencies run on the JS thread). It's really cool!
 
 ### **Prerequisites**
 - Node 16 (Node 17 may show errors. [Node Version Manager](https://github.com/nvm-sh/nvm) is highly recommended)
@@ -39,7 +39,8 @@ If you choose to target iOS or Android for building, respective development appl
 
 ### **Areas of improvement**
 This project was intentionally timeboxed. Given more time, I'd focus on the following for improvement
-- Useful unit tests!
+- Useful unit tests! 
+- Environment variables are tricky in this React Native project and I don't have time to invetigate a good solution. I see them intermittenly fail, so I have hardcoded them in `fetch.ts` as a fallback, to guard against this for others running the project.
 - Proper typings, particularly for the Mars rover tab elements.
 - Resiliency against API changes. For example, runtime type-checks. The four current rovers are currently hard-coded also for app boot. It would also be nice to query the API and *then* render tabs based on the Rovers returned, in case the rovers change.
 - Better abstraction, error-handling, and organization of API requests.

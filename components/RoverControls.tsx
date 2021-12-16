@@ -6,7 +6,6 @@ import { AppContext } from '../providers';
 import { View, Text } from './Themed';
 
 const { width, height } = Dimensions.get('window');
-console.log(width);
 
 export default function RoverControls() {
   const { roverViewConfig, changeRoverViewConfig } = useContext(AppContext);

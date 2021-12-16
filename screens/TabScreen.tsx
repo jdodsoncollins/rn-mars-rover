@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import RoverControls from '../components/roverControls';
-import RoverImages from '../components/RoverImages';
+import { View } from '../components/Themed';
 
 import RoverInfo from '../components/RoverInfo';
-import { View } from '../components/Themed';
 import { AppContext } from '../providers';
 import { RootTabScreenProps } from '../types';
+import RoverImages from '../components/RoverImages';
+import RoverControls from '../components/RoverControls';
 
 export default function TabScreen({
   navigation,

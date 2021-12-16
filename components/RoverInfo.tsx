@@ -11,7 +11,7 @@ export default function RoverInfo() {
   return (
     <View>
       {!selectedRoverDetails && <ActivityIndicator />}
-      {selectedRoverDetails && (
+      {selectedRoverDetails ? (
         <View style={styles.getStartedContainer}>
           <Text
             style={styles.roverInfo}
@@ -45,7 +45,7 @@ export default function RoverInfo() {
             })}
           </Text>
         </View>
-      )}
+      ) : null}
     </View>
   );
 }

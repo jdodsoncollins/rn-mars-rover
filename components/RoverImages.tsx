@@ -14,10 +14,10 @@ export default function RoverImages() {
       contentContainerStyle={{ flexGrow: 1 }}
       style={styles.scrollView}
     >
-      {!images && <ActivityIndicator />}
-      {images.length === 0 && (
-        <Text style={styles.label}>No images. Try a different day.</Text>
-      )}
+      {!images ? <ActivityIndicator /> : null}
+      {images.length === 0 ? (
+        <View><Text style={styles.label}>No images. Try a different day.</Text></View>
+      ) : null}
       {images.map((image, index) => (
         <View key={index} style={styles.imagesContainer}>
           <Image
@@ -39,7 +39,7 @@ export default function RoverImages() {
         </View>
       ))}
       <View style={styles.pageButtons}>
-        {roverViewConfig.page > 1 && (
+        {roverViewConfig.page > 1 ? (
           <Button
             type="outline"
             style={styles.pageButton}
@@ -49,8 +49,8 @@ export default function RoverImages() {
             icon={<Icon name="arrow-left" size={15} color="white" />}
             title="Previous Page"
           />
-        )}
-        <Button
+        ) : null}
+        {images.length ? <Button
           type="outline"
           style={styles.pageButton}
           onPress={() =>
@@ -59,7 +59,7 @@ export default function RoverImages() {
           icon={<Icon name="arrow-right" size={15} color="white" />}
           iconRight
           title="Next Page"
-        />
+        /> : null}
       </View>
     </ScrollView>
   );

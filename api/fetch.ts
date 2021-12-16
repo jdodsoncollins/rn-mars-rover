@@ -1,8 +1,8 @@
 import { Rovers } from '../providers/types';
 
 const MANIFEST = process.env;
-const API_KEY = MANIFEST.APP_MANIFEST.extra.apiKey;
-const API_BASE = MANIFEST.APP_MANIFEST.extra.apiBaseUrl;
+const API_KEY = MANIFEST.APP_MANIFEST?.extra?.apiKey || 'AQCFtNOlrv457BN4LB4NQdMdBCj6i47DKravVaPq';
+const API_BASE = MANIFEST.APP_MANIFEST?.extra?.apiBaseUrl || 'https://api.nasa.gov/mars-photos/api/v1/rovers';
 
 function url(path?: string, params?: URLSearchParams) {
   if (!path) return `${API_BASE}/?api_key=${API_KEY}`;
@@ -18,7 +18,7 @@ export async function apiPhotosRequest(
   rover: Rovers,
   params?: URLSearchParams,
 ) {
-  if (!params?.get('page')) params?.set('page', String(1));
+  if (!params?.has('page')) params?.set('page', String(1));
   return await processFetch(`${rover}/photos`, params);
 }
 
